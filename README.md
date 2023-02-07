@@ -7,7 +7,7 @@ My goal is to create a simple react app which will replace blank spaces/row spac
 - Heroku
 
 # URL
-https://convert-my-text.herokuapp.com/
+https://convert-my-text.onrender.com/
 
 # UI (Screenshot)
 ![image](https://user-images.githubusercontent.com/47927454/187029909-87a909fd-66e7-4372-b7fa-faa1a2135a47.png)
