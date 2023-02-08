@@ -1,16 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { SocialIcon } from 'react-social-icons';
 
 function App() {
   let [text, setText] = useState("");
-  const _handleText = (e) => {
-    let processedText = e.target.value.replace(/\n/g, ",").replace(/\s/g, ",");
+
+  useEffect(() => {
+    const handlePaste = event => {
+      _processText(event.clipboardData.getData('text'));
+    };
+    window.addEventListener('paste', handlePaste);
+    return () => {
+      window.removeEventListener('paste', handlePaste);
+    };
+  }, []);
+
+  const _handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      _processText(event.target.value);
+    }
+  };
+
+  const _processText = (value) => {
+    let processedText = value.replace(/\r\n/g, ",").replace(/\s/g, ",");
     navigator.clipboard.writeText(processedText);
     setText(processedText);
     if (processedText) {
@@ -31,11 +47,12 @@ function App() {
       <header className="App-header">
         <Box style={{ marginTop: 5 }}>
           <TextField
+            type='text'
             style={{ padding: 10, width: 500 }}
             id="outlined-multiline-static"
             variant="filled"
             color="info"
-            onChange={_handleText}
+            onKeyPress={_handleKeyPress}
             rows={15}
             multiline
           />
