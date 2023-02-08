@@ -4,7 +4,7 @@ My goal is to create a simple react app which will replace blank spaces/row spac
 # Tech used
 - ReactJS ⚛️
 - Material UI 🥸
-- Heroku
+- Render https://dashboard.render.com
 
 # URL
 https://convert-my-text.onrender.com/
